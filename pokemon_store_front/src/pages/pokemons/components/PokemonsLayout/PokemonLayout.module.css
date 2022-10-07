@@ -1,0 +1,32 @@
+.listWrapper {
+  height: 1705px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.paginationBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 1327px) { 
+  .listWrapper {
+    height: 2275px;
+  }
+}
+
+@media screen and (max-width: 1007px) { 
+  .listWrapper {
+    height: 3410px;
+  }
+}
+
+@media screen and (max-width: 667px) { 
+  .listWrapper {
+    height: 6340px;
+  }
+}
+

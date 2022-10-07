@@ -1,0 +1,18 @@
+.label {
+  margin: 10px 0 5px;
+}
+
+.input {
+  margin-bottom: 5px !important;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  padding: 4px 0;
+  margin-bottom: 15px;
+}
+
+.buttonWrapper {
+	margin: 15px 0;
+}
