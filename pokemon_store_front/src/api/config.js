@@ -6,33 +6,33 @@ import AuthService from "../services/authService";
 const BASE_URL = "http://localhost:5050";
 
 const config = {
-   baseURL: BASE_URL,
+  baseURL: BASE_URL,
 };
 
 const api = axios.create(config);
 
 api.interceptors.request.use((axiosConfig) => {
-   const accessToken = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+  const accessToken = localStorage.getItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
 
-   axiosConfig.headers.Authorization = `Bearer ${accessToken}`;
+  axiosConfig.headers.Authorization = `Bearer ${accessToken}`;
 
-   return axiosConfig;
+  return axiosConfig;
 });
 
 api.interceptors.response.use(
-   (response) => {
-      return response;
-   },
-   (error) => {
-      if (error.response.status === 401) {
-         AuthService.signOut();
-         return;
-      }
-      if (error.response.status === 400) {
-         return Promise.reject(error.response.data);
-      }
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      AuthService.signOut();
+      return;
+    }
+    if (error.response.status === 400) {
       return Promise.reject(error.response.data);
-   }
+    }
+    return Promise.reject(error.response.data);
+  }
 );
 
 export default api;

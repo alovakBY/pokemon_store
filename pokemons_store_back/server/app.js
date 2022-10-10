@@ -3,9 +3,6 @@ const cors = require("cors");
 
 const dotenv = require("dotenv");
 
-const dbo = require("./connection");
-const jwt = require("jsonwebtoken");
-
 const routes = require("./routes");
 
 const app = express();

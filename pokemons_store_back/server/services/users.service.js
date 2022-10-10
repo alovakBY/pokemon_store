@@ -11,7 +11,7 @@ class UsersService {
     try {
       await client.connect();
 
-      console.log("connect to Mongo");
+      console.log(process.env.CONNECT_TO_DB_TEXT);
 
       const dbo = await client.db("pokemonStore");
 
@@ -25,7 +25,35 @@ class UsersService {
     } finally {
       await client.close();
 
-      console.log("disconnect to Mongo");
+      console.log(process.env.DISCONNECT_TO_DB_TEXT);
+    }
+  };
+
+  setUser = async (userData) => {
+    try {
+      await client.connect();
+
+      console.log(process.env.CONNECT_TO_DB_TEXT);
+
+      const dbo = await client.db("pokemonStore");
+
+      const collection = await dbo.collection("users");
+
+      const isUserExists = await collection.findOne({ email: userData.email });
+
+      if (isUserExists) {
+        throw new Error("User already exists");
+      } else {
+        const { insertedId } = await collection.insertOne(userData);
+
+        const user = await collection.findOne(insertedId);
+
+        return user;
+      }
+    } finally {
+      await client.close();
+
+      console.log(process.env.DISCONNECT_TO_DB_TEXT);
     }
   };
 }
