@@ -17,7 +17,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use("/", routes);
 
 app.listen(port, () => {
-  console.log(`server listening on port ${port}`);
+   console.log(`server listening on port ${port}`);
 });
 
 // app.post("/pokemons", async (req, res) => {
