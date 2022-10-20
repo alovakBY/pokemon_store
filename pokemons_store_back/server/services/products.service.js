@@ -7,31 +7,50 @@ dotenv.config();
 const client = new MongoClient(process.env.MONGODB_URL);
 
 class ProductsService {
-   getAllProducts = async (page, limit) => {
-      try {
-         await client.connect();
+  getAllProducts = async (page, limit) => {
+    try {
+      await client.connect();
 
-         console.log("connect to mongo");
+      console.log("connect to mongo");
 
-         const dbo = client.db("pokemonStore");
+      const dbo = client.db("pokemonStore");
 
-         const products = await dbo.collection("pokemons");
+      const products = await dbo.collection("products");
 
-         console.log(products);
+      const productsCollection = await products
+        .find()
+        .skip((page - 1) * limit)
+        .limit(limit)
+        .toArray();
 
-         const productsCollection = await products
-            .find()
-            .skip((page - 1) * limit)
-            .limit(limit)
-            .toArray();
+      return productsCollection;
+    } finally {
+      client.close();
 
-         return productsCollection;
-      } finally {
-         client.close();
+      console.log("disconnect to mongo");
+    }
+  };
 
-         console.log("disconnect to mongo");
-      }
-   };
+  getProduct = async (id) => {
+    try {
+      console.log(id);
+      await client.connect();
+
+      const dbo = await client.db("pokemonStore");
+
+      const products = await dbo.collection("products");
+
+      const product = await products.findOne({ id });
+
+      console.log(product);
+
+      return product;
+    } finally {
+      client.close();
+
+      console.log("disconnect to mongo");
+    }
+  };
 }
 
 module.exports = new ProductsService();
