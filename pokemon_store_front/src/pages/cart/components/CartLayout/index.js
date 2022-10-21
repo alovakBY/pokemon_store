@@ -47,7 +47,7 @@ export const CartLayout = ({
         </div>
         <Box className={classes.box} role="presentation">
           <div className={classes.shadow}>
-            {cardsList.length === 0 ? (
+            {cardsList?.length === 0 ? (
               <div className={classes.empty}>
                 <div className={classes.emptyImg}>
                   <img src={emptyCart} alt="empty" />
@@ -64,7 +64,7 @@ export const CartLayout = ({
             to={ROUTE_NAMES.ORDERS}
             onClick={toggleDrawer}
             className={`${classes.button} ${
-              cardsList.length === 0 ? classes.disabled : ""
+              cardsList?.length === 0 ? classes.disabled : ""
             }`}
           >
             <span className={classes.buttonText}>Proceed To Checkout</span>

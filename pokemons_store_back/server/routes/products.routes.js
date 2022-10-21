@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ProductsService = require("../services/products.service");
 
-router.use("/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const productId = parseInt(req.params.id);
 
@@ -20,7 +20,7 @@ router.use("/:id", async (req, res) => {
   }
 });
 
-router.use("/", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { page, limit } = req.query;
 
