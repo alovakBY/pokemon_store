@@ -110,6 +110,36 @@ class CartService {
          console.log("disconnect to mongo");
       }
    };
+
+   clearCart = async (cartId) => {
+      try {
+         await client.connect();
+
+         console.log("connect to mongo");
+
+         const dbo = await client.db("pokemonStore");
+
+         const cartsCollection = await dbo.collection("carts");
+
+         const update = await cartsCollection.updateOne(
+            {
+               _id: ObjectId(cartId),
+            },
+            {
+               $set: { itemsList: [] },
+            },
+            {
+               returnDocument: "after",
+            }
+         );
+
+         return update.value;
+      } finally {
+         client.close();
+
+         console.log("disconnect to mongo");
+      }
+   };
 }
 
 module.exports = new CartService();

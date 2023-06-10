@@ -5,11 +5,12 @@ const jwt = require("jsonwebtoken");
 const authRoutes = require("./auth.routes");
 const productsRoutes = require("./products.routes");
 const cartRoutes = require("./cart.routes");
+const orderRoutes = require("./order.routes");
 
 router.use((req, res, next) => {
   try {
     if (
-      req.url.startsWith("/auth") /* || req.url.startsWith("/set_pokemons") */
+      req?.url?.startsWith("/auth") /* || req.url.startsWith("/set_pokemons") */
     ) {
       next();
     } else {
@@ -49,24 +50,25 @@ router.use((req, res, next) => {
   }
 });
 
-// router.use("/set_pokemons", async (req, res) => {
-//   await client.connect();
+router.use("/set_pokemons", async (req, res) => {
+  await client.connect();
 
-//   console.log(req.body);
+  console.log(req.body);
 
-//   const dbo = await client.db("pokemonStore");
+  const dbo = await client.db("pokemonStore");
 
-//   const collection = await dbo.collection("products");
+  const collection = await dbo.collection("products");
 
-//   const products = await collection.insertMany(req.body);
+  const products = await collection.insertMany(req.body);
 
-//   console.log(products);
+  console.log(products);
 
-//   res.end();
-// });
+  res.end();
+});
 
 router.use("/auth", authRoutes);
 router.use("/products", productsRoutes);
 router.use("/cart", cartRoutes);
+router.use("/order", orderRoutes);
 
 module.exports = router;

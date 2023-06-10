@@ -8,7 +8,6 @@ const client = new MongoClient(process.env.MONGODB_URL);
 
 class UsersService {
    getUser = async (userData) => {
-      //  console.log(userData);
       try {
          await client.connect();
 
@@ -52,10 +51,18 @@ class UsersService {
             const user = await usersCollection.findOne(insertedId);
 
             const cartsCollection = await dbo.collection("carts");
+            const ordersCollection = await dbo.collection("orders");
 
             await cartsCollection.insertOne({
                _id: insertedId,
+               customerId: insertedId.toString(),
                itemsList: [],
+            });
+
+            await ordersCollection.insertOne({
+               _id: insertedId,
+               customerId: insertedId.toString(),
+               orders: [],
             });
 
             return user;

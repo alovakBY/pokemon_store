@@ -2,8 +2,7 @@
 
 # dependencies
 /pokemon_store_front/node_modules
-.pokemons_store_back/client/node_modules
-.pokemons_store_back/server/node_modules
+/pokemons_store_back/node_modules
 /.pnp
 .pnp.js
 

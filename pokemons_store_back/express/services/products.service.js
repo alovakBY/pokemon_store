@@ -42,8 +42,6 @@ class ProductsService {
 
          const product = await products.findOne({ id });
 
-         // console.log(product);
-
          return product;
       } finally {
          client.close();
