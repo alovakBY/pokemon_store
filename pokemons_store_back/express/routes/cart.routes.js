@@ -174,8 +174,14 @@
  *   description: delete item
  * /cart/item/{id}:
  *   delete:
- *     summary: add item to cart
+ *     summary: delete item to cart
  *     tags: [Cart]
+ *     parameters:
+ *       - in: path
+ *         required: true
+ *         name: id
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: OK
