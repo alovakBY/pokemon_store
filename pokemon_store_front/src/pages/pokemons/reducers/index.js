@@ -16,7 +16,6 @@ export const pokemonsPageReducer = handleActions(
       errors: null,
     }),
     [actions.GET_POKEMONS_SUCCESS]: (state, { payload }) => {
-      console.log(payload);
       return {
         ...state,
         isLoading: false,

@@ -48,7 +48,6 @@ export const signInPageReducer = handleActions(
       };
     },
     [actions.SIGN_IN_FAIL]: (state, { payload }) => {
-      console.log(payload);
       return {
         ...state,
         isLoading: false,

@@ -23,7 +23,6 @@ export const signUpPageReducer = handleActions(
       };
     },
     [actions.SIGN_UP_SUCCESS]: (state, { payload }) => {
-      console.log(payload);
       return {
         ...state,
         isLoading: false,

@@ -45,7 +45,6 @@ export const cartReducer = handleActions(
       },
 
       [actions.SET_CART_ITEM_SUCCESS]: (state, { payload }) => {
-         console.log(payload.response);
          return {
             ...state,
             cartInfo: payload.response,
@@ -77,7 +76,6 @@ export const cartReducer = handleActions(
       },
 
       [actions.DELETE_CART_ITEM_SUCCESS]: (state, { payload }) => {
-         console.log(payload.response.removedItemId);
          const cartInfoCopy = { ...state.cartInfo };
          const updatedItemIndex = cartInfoCopy.itemsList.findIndex(
             (pokemon) => {
@@ -102,7 +100,6 @@ export const cartReducer = handleActions(
          actions.UPDATE_CART_ITEM_FAIL,
          actions.DELETE_CART_ITEM_FAIL
       )]: (state, { payload }) => {
-         console.log(payload);
          return {
             ...state,
             isLoading: false,

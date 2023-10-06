@@ -13,7 +13,6 @@ class AuthService {
   }
 
   signUp(signUpData) {
-    console.log(signUpData);
     return api.post("/auth/signUp", signUpData);
   }
 

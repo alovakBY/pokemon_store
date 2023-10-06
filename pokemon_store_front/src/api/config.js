@@ -2,8 +2,7 @@ import axios from "axios";
 import { LOCAL_STORAGE_KEYS } from "../constants/localStorageKeys";
 import AuthService from "../services/authService";
 
-// const BASE_URL = "https://it-shatle-demo-api.herokuapp.com";
-const BASE_URL = "http://localhost:5050";
+const BASE_URL = "https://pokemonstore.onrender.com/";
 
 const config = {
   baseURL: BASE_URL,
