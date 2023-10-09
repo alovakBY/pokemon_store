@@ -6,7 +6,7 @@ const options = {
     openapi: "3.1.0",
     servers: [
       {
-        url: "http://localhost:5050",
+        url: "https://pokemonstore.onrender.com",
       },
     ],
     components: {
