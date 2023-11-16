@@ -292,9 +292,7 @@ router.post("/item", async (req, res) => {
 });
 
 router.patch("/item", async (req, res) => {
-  const {id, image, name, price, quantity} = req.body
-
-  if (!id || !image || !name || !price || !quantity) {
+  if (!('id' in req.body) || !('quantity' in req.body)) {
 
     res.status(400).send({
       code: 400,
