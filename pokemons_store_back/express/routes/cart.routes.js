@@ -250,6 +250,19 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/item", async (req, res) => {
+  const {id, image, name, price, quantity} = req.body
+
+  if (!id || !image || !name || !price || !quantity) {
+
+    res.status(400).send({
+      code: 400,
+      message: "bad request",
+    });
+
+    res.end();
+    return;
+  }
+
   try {
     const token = req.headers?.authorization?.split(" ")[1];
     const { id } = jwt.decode(token);
@@ -279,6 +292,19 @@ router.post("/item", async (req, res) => {
 });
 
 router.patch("/item", async (req, res) => {
+  const {id, image, name, price, quantity} = req.body
+
+  if (!id || !image || !name || !price || !quantity) {
+
+    res.status(400).send({
+      code: 400,
+      message: "bad request",
+    });
+
+    res.end();
+    return;
+  }
+
   try {
     const token = req.headers?.authorization?.split(" ")[1];
     const { id } = jwt.decode(token);
